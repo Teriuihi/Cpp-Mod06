@@ -3,8 +3,8 @@ CC=c++
 FLAGS=-Wall -Wextra -Werror -std=c++98
 RM=rm -f
 
-FILES=main.cpp TypeChecker.cpp
-HEADERS=TypeChecker.hpp
+FILES=main.cpp TypeChecker.cpp Converter.cpp
+HEADERS=Type.hpp TypeChecker.hpp Converter.hpp
 
 OBJ=$(FILES:%.cpp=%.o)
 

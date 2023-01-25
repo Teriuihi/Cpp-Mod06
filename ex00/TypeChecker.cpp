@@ -13,17 +13,15 @@ bool stringEquals(char *s1, std::string s2) {
 }
 
 bool TypeChecker::checkChar(char *input) {
-	return false;
-}
-
-bool TypeChecker::checkInt(char *input) {
+	if (input[0] != 0 && input[1] == 0)
+		return true;
 	return false;
 }
 
 bool TypeChecker::checkDouble(char *input) {
 	if (input == NULL || input[0] == 0)
 		return false;
-	if (stringEquals(input, "-inff") || stringEquals(input, "+inff"))
+	if (stringEquals(input, "-inf") || stringEquals(input, "+inf"))
 		return true;
 	if (input[0] != '+' && input[0] != '0' && !std::isdigit(input[0]))
 		return false;
@@ -34,14 +32,32 @@ bool TypeChecker::checkDouble(char *input) {
 			foundDot = true;
 		i++;
 	}
-	if (input[i] == 'f' && input[i] + 1 == 0)
+	if (!foundDot)
+		return false;
+	if (input[i] == 0)
 		return true;
+	return false;
+}
+
+bool TypeChecker::checkInt(char *input) {
+	if (input == NULL || input[0] == 0)
+		return false;
+	if (input[0] != '+' && input[0] != '0' && !std::isdigit(input[0]))
+		return false;
+	int i = 1;
+	while (std::isdigit(input[i]) ) {
+		i++;
+	}
+	if (input[i] == 0)
+		return true;
+	return false;
 }
 
 bool TypeChecker::checkFloat(char *input) {
 	if (input == NULL || input[0] == 0)
 		return false;
-	if (stringEquals(input, "-inff") || stringEquals(input, "+inff"))
+	if (stringEquals(input, "-inff") || stringEquals(input, "+inff")
+			|| stringEquals(input, "nan"))
 		return true;
 	if (input[0] != '+' && input[0] != '0' && !std::isdigit(input[0]))
 		return false;
@@ -52,19 +68,20 @@ bool TypeChecker::checkFloat(char *input) {
 			foundDot = true;
 		i++;
 	}
-	if (input[i] == 'f' && input[i] + 1 == 0)
+	if (input[i] == 'f' && input[i + 1] == 0)
 		return true;
+	return false;
 }
 
-TypeChecker::Type TypeChecker::getType(char *input) {
+Type TypeChecker::getType(char *input) {
 	if (checkFloat(input))
-		return TypeChecker::Float;
-	else if (checkDouble(input))
-		return TypeChecker::Double;
+		return Float;
 	else if (checkInt(input))
-		return TypeChecker::Double;
+		return Int;
+	else if (checkDouble(input))
+		return Double;
 	else if (checkChar(input))
-		return TypeChecker::Double;
+		return Char;
 	throw UnknownTypeException();
 }
 
