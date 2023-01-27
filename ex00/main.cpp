@@ -21,25 +21,8 @@ int main(int len, char **args) {
 	}
 
 	try {
-		Type type = TypeChecker().getType(args[1]);
-		switch (type) {
-			case Char:
-				std::cout << "Type is Char" << std::endl;
-				break;
-			case Int:
-				std::cout << "Type is Int" << std::endl;
-				break;
-			case Float:
-				std::cout << "Type is Float" << std::endl;
-				break;
-			case Double:
-				std::cout << "Type is Double" << std::endl;
-				break;
-		}
-		Converter().convert(type, args[1]);
-	} catch (TypeChecker::UnknownTypeException e) {
+		Converter().convert(TypeChecker().getType(args[1]), args[1]);
+	} catch (TypeChecker::UnknownTypeException &e) {
 		std::cout << "This input is not a valid type." << std::endl;
 	}
-
-	printChar(std::atoi(args[1]));
 }

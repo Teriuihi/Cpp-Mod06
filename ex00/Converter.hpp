@@ -12,6 +12,14 @@ private:
 	void fromInt(int input);
 	void fromDouble(double input);
 	void fromChar(char input);
+	char c;
+	int i;
+	double d;
+	float f;
+	bool nanInf;
+	void print();
+	bool isNanInf(double input);
+	bool isNanInf(float input);
 public:
 	void convert(Type type, char input[]);
 };

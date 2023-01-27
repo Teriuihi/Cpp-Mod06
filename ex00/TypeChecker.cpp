@@ -9,7 +9,7 @@ bool stringEquals(char *s1, std::string s2) {
 		if (s1[i] == 0 || s1[i] != s2[i])
 			return false;
 	}
-	return true;
+	return s1[s2.length()] == 0;
 }
 
 bool TypeChecker::checkChar(char *input) {
