@@ -1,10 +1,10 @@
-NAME=ex00
+NAME=ex01
 CC=c++
 FLAGS=-Wall -Wextra -Werror -std=c++98
 RM=rm -f
 
-FILES=main.cpp TypeChecker.cpp Converter.cpp
-HEADERS=TypeChecker.hpp Converter.hpp
+FILES=main.cpp Data.cpp Serializer.cpp
+HEADERS=Data.hpp Serializer.hpp
 
 OBJ=$(FILES:%.cpp=%.o)
 
