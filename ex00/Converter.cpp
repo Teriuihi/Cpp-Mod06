@@ -84,8 +84,11 @@ void Converter::print() {
 		std::cout << "int: " << this->i << std::endl;
 	}
 	std::cout << "float: " << this->f << "f" << std::endl;
-	std::cout << "double: " << this->d << ((isNanInf(this->d) && this->d == this->i)
-		? ".0" : "") << std::endl;
+	std::cout << "double: " << this->d;
+	if (!isNanInf(this->d) && (std::fmod(this->d, 1) == 0))
+		std::cout << ".0";
+	std::cout << std::endl;
+
 }
 
 bool Converter::isNanInf(double input) {
