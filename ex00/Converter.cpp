@@ -83,7 +83,10 @@ void Converter::print() {
 			std::cout << "char: " << this->c << std::endl;
 		std::cout << "int: " << this->i << std::endl;
 	}
-	std::cout << "float: " << this->f << "f" << std::endl;
+	std::cout << "float: " << this->f;
+	if (!isNanInf(this->d) && (std::fmod(this->d, 1) == 0))
+		std::cout << ".0";
+	std::cout << "f" << std::endl;
 	std::cout << "double: " << this->d;
 	if (!isNanInf(this->d) && (std::fmod(this->d, 1) == 0))
 		std::cout << ".0";
